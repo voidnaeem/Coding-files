@@ -1,0 +1,207 @@
+C++ Programming Notes (Beginner to Intermediate) Author: Naeem
+
+  -------------------------------------
+  1. Basic Structure of a C++ Program
+  -------------------------------------
+
+Example Code:
+
+#include using namespace std;
+
+int main() { cout << “Hello World”; return 0; }
+
+Explanation:
+
+#include This line includes the input-output library. It allows us to
+use cout and cin.
+
+using namespace std; This allows us to use standard C++ names without
+writing std:: every time.
+
+int main() This is the main function. Every C++ program starts executing
+from here.
+
+cout << “Hello World”; cout is used to print text on the screen.
+
+return 0; This ends the program and tells the system that the program
+finished successfully.
+
+  -----------------------------
+  2. Variables and Data Types
+  -----------------------------
+
+Variables store information.
+
+Example Code:
+
+#include using namespace std;
+
+int main() { int age = 20; float height = 5.8; char grade = ‘A’;
+
+    cout << age << endl;
+    cout << height << endl;
+    cout << grade << endl;
+
+    return 0;
+
+}
+
+Explanation:
+
+int age = 20; Stores an integer value.
+
+float height = 5.8; Stores decimal numbers.
+
+char grade = ‘A’; Stores a single character.
+
+endl moves the output to the next line.
+
+  ---------------------
+  3. Input and Output
+  ---------------------
+
+Example Code:
+
+#include using namespace std;
+
+int main() {
+
+    int number;
+
+    cout << "Enter a number: ";
+    cin >> number;
+
+    cout << "You entered: " << number;
+
+    return 0;
+
+}
+
+Explanation:
+
+cin is used to take input from the user.
+
+cin >> number; The value entered by the user is stored inside the
+variable number.
+
+  ----------------------
+  4. If-Else Condition
+  ----------------------
+
+Example Code:
+
+#include using namespace std;
+
+int main() {
+
+    int age;
+
+    cout << "Enter your age: ";
+    cin >> age;
+
+    if(age >= 18) {
+        cout << "You are eligible to vote";
+    }
+    else {
+        cout << "You are not eligible to vote";
+    }
+
+    return 0;
+
+}
+
+Explanation:
+
+if checks a condition.
+
+If the condition is true, the first block runs.
+
+If the condition is false, the else block runs.
+
+  ---------------------
+  5. Loops (For Loop)
+  ---------------------
+
+Loops repeat code multiple times.
+
+Example Code:
+
+#include using namespace std;
+
+int main() {
+
+    for(int i = 1; i <= 5; i++) {
+        cout << i << endl;
+    }
+
+    return 0;
+
+}
+
+Explanation:
+
+int i = 1 Loop starts from 1.
+
+i <= 5 Loop runs until the value reaches 5.
+
+i++ Value increases after every loop.
+
+  --------------
+  6. Functions
+  --------------
+
+Functions help divide code into reusable blocks.
+
+Example Code:
+
+#include using namespace std;
+
+int add(int a, int b) { return a + b; }
+
+int main() {
+
+    int result = add(5,3);
+
+    cout << "Sum is: " << result;
+
+    return 0;
+
+}
+
+Explanation:
+
+int add(int a, int b) This function takes two numbers as input.
+
+return a + b; The function returns the sum.
+
+add(5,3) Calls the function.
+
+  -----------
+  7. Arrays
+  -----------
+
+Arrays store multiple values in a single variable.
+
+Example Code:
+
+#include using namespace std;
+
+int main() {
+
+    int numbers[5] = {10,20,30,40,50};
+
+    for(int i = 0; i < 5; i++) {
+        cout << numbers[i] << endl;
+    }
+
+    return 0;
+
+}
+
+Explanation:
+
+numbers[5] Array size is 5.
+
+numbers[i] Accesses elements one by one.
+
+ 
