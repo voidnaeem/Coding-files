@@ -1,0 +1,441 @@
+
+========================================
+1. Introduction to HTML
+========================================
+
+HTML stands for HyperText Markup Language.
+
+It is used to create the structure of web pages.
+
+HTML tells the browser:
+- what to display
+- where to display
+- how content is organized
+
+Example:
+- headings
+- paragraphs
+- images
+- links
+- forms
+- tables
+
+HTML is NOT a programming language.
+It is a markup language.
+
+========================================
+2. Basic Structure of HTML
+========================================
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My First Page</title>
+</head>
+
+<body>
+
+    <h1>Hello World</h1>
+
+</body>
+
+</html>
+
+Explanation:
+
+<!DOCTYPE html>
+→ tells browser this is HTML5
+
+<html>
+→ root element of webpage
+
+<head>
+→ contains page information
+
+<title>
+→ page title shown in browser tab
+
+<body>
+→ visible content of webpage
+
+========================================
+3. Headings
+========================================
+
+HTML provides 6 headings.
+
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+
+Explanation:
+
+h1 = biggest heading
+h6 = smallest heading
+
+========================================
+4. Paragraph Tag
+========================================
+
+<p>
+This is a paragraph.
+</p>
+
+Explanation:
+
+<p> tag is used to write paragraphs.
+
+========================================
+5. Line Break and Horizontal Line
+========================================
+
+Hello <br> World
+
+<hr>
+
+Explanation:
+
+<br>
+→ moves content to next line
+
+<hr>
+→ creates horizontal line
+
+========================================
+6. Text Formatting Tags
+========================================
+
+<b>Bold Text</b>
+
+<strong>Important Text</strong>
+
+<i>Italic Text</i>
+
+<em>Emphasized Text</em>
+
+<u>Underline</u>
+
+<mark>Highlighted</mark>
+
+<small>Small Text</small>
+
+<del>Deleted Text</del>
+
+Explanation:
+
+These tags change text appearance.
+
+========================================
+7. Lists in HTML
+========================================
+
+Ordered List:
+
+<ol>
+    <li>Apple</li>
+    <li>Mango</li>
+</ol>
+
+Unordered List:
+
+<ul>
+    <li>Tea</li>
+    <li>Coffee</li>
+</ul>
+
+Explanation:
+
+<ol>
+→ numbered list
+
+<ul>
+→ bullet list
+
+<li>
+→ list item
+
+========================================
+8. Links in HTML
+========================================
+
+<a href="https://google.com">
+Visit Google
+</a>
+
+Explanation:
+
+<a>
+→ anchor tag
+
+href
+→ destination link
+
+========================================
+9. Images in HTML
+========================================
+
+<img src="image.jpg" alt="Nature Image">
+
+Explanation:
+
+src
+→ image path
+
+alt
+→ alternative text
+
+========================================
+10. Tables in HTML
+========================================
+
+<table border="1">
+
+<tr>
+    <th>Name</th>
+    <th>Age</th>
+</tr>
+
+<tr>
+    <td>Naeem</td>
+    <td>20</td>
+</tr>
+
+</table>
+
+Explanation:
+
+<table>
+→ creates table
+
+<tr>
+→ table row
+
+<th>
+→ table heading
+
+<td>
+→ table data
+
+========================================
+11. Forms in HTML
+========================================
+
+<form>
+
+<label>Name:</label>
+<input type="text">
+
+<br><br>
+
+<label>Password:</label>
+<input type="password">
+
+<br><br>
+
+<input type="submit">
+
+</form>
+
+Explanation:
+
+Forms collect user data.
+
+========================================
+12. Input Types
+========================================
+
+<input type="text">
+<input type="password">
+<input type="email">
+<input type="number">
+<input type="date">
+<input type="radio">
+<input type="checkbox">
+<input type="file">
+
+Explanation:
+
+Different input types perform different tasks.
+
+========================================
+13. Buttons
+========================================
+
+<button>
+Click Me
+</button>
+
+Explanation:
+
+Button is used for user actions.
+
+========================================
+14. Audio and Video
+========================================
+
+<audio controls>
+    <source src="audio.mp3">
+</audio>
+
+<video width="300" controls>
+    <source src="video.mp4">
+</video>
+
+Explanation:
+
+controls
+→ adds play/pause buttons
+
+========================================
+15. Semantic HTML
+========================================
+
+<header></header>
+
+<nav></nav>
+
+<section></section>
+
+<article></article>
+
+<footer></footer>
+
+Explanation:
+
+Semantic tags improve:
+- SEO
+- readability
+- accessibility
+
+========================================
+16. Div and Span
+========================================
+
+<div>
+    This is div
+</div>
+
+<span>
+    This is span
+</span>
+
+Explanation:
+
+<div>
+→ block element
+
+<span>
+→ inline element
+
+========================================
+17. HTML Attributes
+========================================
+
+<p title="Hello">
+Move mouse here
+</p>
+
+Explanation:
+
+Attributes provide extra information.
+
+========================================
+18. HTML Comments
+========================================
+
+<!-- This is comment -->
+
+Explanation:
+
+Comments are ignored by browser.
+
+========================================
+19. HTML Entities
+========================================
+
+&lt;   less than
+&gt;   greater than
+&amp;  ampersand
+
+Explanation:
+
+Entities display reserved symbols.
+
+========================================
+20. Iframe
+========================================
+
+<iframe src="https://example.com">
+</iframe>
+
+Explanation:
+
+Iframe displays another webpage.
+
+========================================
+21. Meta Tags
+========================================
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+Explanation:
+
+Meta tags help:
+- responsiveness
+- SEO
+- browser compatibility
+
+========================================
+22. HTML Classes and IDs
+========================================
+
+<p class="text">
+Hello
+</p>
+
+<p id="heading">
+World
+</p>
+
+Explanation:
+
+class
+→ used for multiple elements
+
+id
+→ unique element
+
+========================================
+23. HTML File Path
+========================================
+
+<img src="images/photo.jpg">
+
+Explanation:
+
+Used to connect files and folders.
+
+========================================
+24. Block vs Inline Elements
+========================================
+
+Block Elements:
+- div
+- p
+- h1
+
+Inline Elements:
+- span
+- a
+
+
+========================================
+END OF HTML NOTES
+========================================
