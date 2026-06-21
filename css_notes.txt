@@ -1,0 +1,765 @@
+========================================
+1. Introduction to CSS
+========================================
+ 
+CSS stands for Cascading Style Sheets.
+ 
+It is used to style and design web pages.
+ 
+CSS tells the browser:
+- what color to use
+- what font to use
+- how big elements should be
+- where elements should be placed
+ 
+Example:
+- colors
+- fonts
+- margins
+- padding
+- backgrounds
+- animations
+ 
+CSS is NOT a programming language.
+It is a styling language.
+ 
+========================================
+2. How to Add CSS
+========================================
+ 
+3 Ways to add CSS:
+ 
+1. Inline CSS (inside the tag)
+ 
+<p style="color: red;">Hello</p>
+ 
+2. Internal CSS (inside <style> tag)
+ 
+<style>
+    p {
+        color: red;
+    }
+</style>
+ 
+3. External CSS (separate .css file)
+ 
+<link rel="stylesheet" href="style.css">
+ 
+Explanation:
+ 
+External CSS is the best practice.
+It keeps HTML and CSS separate.
+ 
+========================================
+3. CSS Syntax
+========================================
+ 
+selector {
+    property: value;
+}
+ 
+Example:
+ 
+h1 {
+    color: blue;
+    font-size: 30px;
+}
+ 
+Explanation:
+ 
+selector
+→ which element to style (h1, p, div)
+ 
+property
+→ what to change (color, font-size)
+ 
+value
+→ what to set it to (blue, 30px)
+ 
+========================================
+4. CSS Selectors
+========================================
+ 
+Element Selector:
+p {
+    color: red;
+}
+ 
+Class Selector:
+.myClass {
+    color: green;
+}
+ 
+ID Selector:
+#myId {
+    color: blue;
+}
+ 
+Universal Selector:
+* {
+    margin: 0;
+    padding: 0;
+}
+ 
+Group Selector:
+h1, h2, p {
+    color: black;
+}
+ 
+Explanation:
+ 
+.class
+→ used for multiple elements
+ 
+#id
+→ used for one unique element
+ 
+*
+→ selects everything on page
+ 
+========================================
+5. CSS Colors
+========================================
+ 
+By Name:
+p { color: red; }
+ 
+By HEX Code:
+p { color: #ff0000; }
+ 
+By RGB:
+p { color: rgb(255, 0, 0); }
+ 
+By RGBA (with transparency):
+p { color: rgba(255, 0, 0, 0.5); }
+ 
+Background Color:
+body { background-color: yellow; }
+ 
+Explanation:
+ 
+HEX #ff0000 = red
+RGB (255, 0, 0) = red
+RGBA last value = transparency (0 to 1)
+ 
+========================================
+6. CSS Fonts
+========================================
+ 
+font-family: Arial, sans-serif;
+ 
+font-size: 20px;
+ 
+font-weight: bold;
+ 
+font-style: italic;
+ 
+text-align: center;
+ 
+text-decoration: underline;
+ 
+Example:
+ 
+p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+ 
+Explanation:
+ 
+font-family
+→ which font to use
+ 
+font-size
+→ how big the text is
+ 
+font-weight
+→ bold or normal
+ 
+text-align
+→ left, center, right
+ 
+========================================
+7. CSS Box Model
+========================================
+ 
+Every element is a box.
+ 
++---------------------------+
+|        MARGIN             |
+|  +---------------------+  |
+|  |      BORDER         |  |
+|  |  +---------------+  |  |
+|  |  |    PADDING    |  |  |
+|  |  |  +---------+  |  |  |
+|  |  |  | CONTENT |  |  |  |
+|  |  |  +---------+  |  |  |
+|  |  +---------------+  |  |
+|  +---------------------+  |
++---------------------------+
+ 
+Example:
+ 
+div {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid black;
+    width: 200px;
+    height: 100px;
+}
+ 
+Explanation:
+ 
+margin
+→ space OUTSIDE the element
+ 
+padding
+→ space INSIDE the element
+ 
+border
+→ line around the element
+ 
+width / height
+→ size of the content
+ 
+========================================
+8. CSS Margin
+========================================
+ 
+margin: 20px;              (all sides)
+ 
+margin-top: 10px;
+margin-right: 20px;
+margin-bottom: 10px;
+margin-left: 20px;
+ 
+Shorthand:
+margin: 10px 20px 10px 20px;
+        (top right bottom left)
+ 
+margin: auto;
+→ centers the element horizontally
+ 
+Explanation:
+ 
+margin: auto is used to center a div.
+ 
+========================================
+9. CSS Padding
+========================================
+ 
+padding: 20px;              (all sides)
+ 
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+ 
+Shorthand:
+padding: 10px 20px 10px 20px;
+         (top right bottom left)
+ 
+Explanation:
+ 
+Padding adds space inside the element.
+It pushes content away from the border.
+ 
+========================================
+10. CSS Border
+========================================
+ 
+border: 2px solid black;
+ 
+border-width: 2px;
+border-style: solid;
+border-color: black;
+ 
+border-radius: 10px;
+→ makes corners rounded
+ 
+Example:
+ 
+button {
+    border: 2px solid blue;
+    border-radius: 8px;
+}
+ 
+Border Styles:
+solid
+dashed
+dotted
+none
+ 
+========================================
+11. CSS Width and Height
+========================================
+ 
+div {
+    width: 200px;
+    height: 100px;
+}
+ 
+Percentage:
+div {
+    width: 50%;
+}
+ 
+Max and Min:
+div {
+    max-width: 600px;
+    min-width: 200px;
+}
+ 
+Explanation:
+ 
+px
+→ fixed size in pixels
+ 
+%
+→ size relative to parent element
+ 
+max-width
+→ element will not grow bigger than this
+ 
+========================================
+12. CSS Background
+========================================
+ 
+background-color: lightblue;
+ 
+background-image: url('image.jpg');
+ 
+background-size: cover;
+ 
+background-repeat: no-repeat;
+ 
+background-position: center;
+ 
+Example:
+ 
+body {
+    background-color: #f0f0f0;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+ 
+Explanation:
+ 
+cover
+→ image fills the whole area
+ 
+no-repeat
+→ image shows only once
+ 
+========================================
+13. CSS Display
+========================================
+ 
+display: block;
+display: inline;
+display: inline-block;
+display: none;
+display: flex;
+display: grid;
+ 
+Explanation:
+ 
+block
+→ takes full width (div, p, h1)
+ 
+inline
+→ takes only content width (span, a)
+ 
+inline-block
+→ inline but allows width/height
+ 
+none
+→ hides the element completely
+ 
+flex
+→ flexible layout (explained below)
+ 
+Example:
+ 
+span {
+    display: block;
+    width: 100px;
+}
+ 
+========================================
+14. CSS Flexbox
+========================================
+ 
+Container:
+ 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+ 
+justify-content values:
+center
+flex-start
+flex-end
+space-between
+space-around
+ 
+align-items values:
+center
+flex-start
+flex-end
+ 
+flex-direction values:
+row         (left to right)
+column      (top to bottom)
+ 
+Example:
+ 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+Explanation:
+ 
+Flexbox is used to align elements
+in a row or column easily.
+ 
+========================================
+15. CSS Position
+========================================
+ 
+position: static;      (default)
+position: relative;
+position: absolute;
+position: fixed;
+position: sticky;
+ 
+Used with:
+top: 10px;
+left: 20px;
+right: 0;
+bottom: 0;
+ 
+Example:
+ 
+.box {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}
+ 
+Explanation:
+ 
+static
+→ normal flow (default)
+ 
+relative
+→ moved from its normal position
+ 
+absolute
+→ removed from flow, positioned to parent
+ 
+fixed
+→ stays fixed on screen while scrolling
+ 
+sticky
+→ sticks when you scroll to it
+ 
+========================================
+16. CSS Pseudo Classes
+========================================
+ 
+a:hover {
+    color: red;
+}
+ 
+button:hover {
+    background-color: blue;
+}
+ 
+input:focus {
+    border: 2px solid green;
+}
+ 
+li:first-child {
+    color: red;
+}
+ 
+li:last-child {
+    color: blue;
+}
+ 
+Explanation:
+ 
+:hover
+→ when mouse is over the element
+ 
+:focus
+→ when input is clicked / selected
+ 
+:first-child
+→ first item in a list
+ 
+:last-child
+→ last item in a list
+ 
+========================================
+17. CSS Pseudo Elements
+========================================
+ 
+p::before {
+    content: ">> ";
+    color: red;
+}
+ 
+p::after {
+    content: " <<";
+    color: blue;
+}
+ 
+h1::first-letter {
+    font-size: 50px;
+    color: green;
+}
+ 
+Explanation:
+ 
+::before
+→ adds content before the element
+ 
+::after
+→ adds content after the element
+ 
+::first-letter
+→ styles the first letter only
+ 
+========================================
+18. CSS Variables
+========================================
+ 
+:root {
+    --main-color: blue;
+    --font-size: 16px;
+}
+ 
+p {
+    color: var(--main-color);
+    font-size: var(--font-size);
+}
+ 
+Explanation:
+ 
+:root
+→ defines variables globally
+ 
+var()
+→ uses the variable
+ 
+CSS Variables make it easy to
+change colors/sizes in one place.
+ 
+========================================
+19. CSS Transitions
+========================================
+ 
+button {
+    background-color: blue;
+    transition: background-color 0.3s ease;
+}
+ 
+button:hover {
+    background-color: red;
+}
+ 
+Syntax:
+transition: property duration speed;
+ 
+Speed values:
+ease
+linear
+ease-in
+ease-out
+ 
+Explanation:
+ 
+transition makes the change smooth.
+Without it the color changes instantly.
+With it the color slowly fades.
+ 
+========================================
+20. CSS Animations
+========================================
+ 
+@keyframes myAnimation {
+    0%   { color: red; }
+    100% { color: blue; }
+}
+ 
+h1 {
+    animation: myAnimation 2s infinite;
+}
+ 
+Syntax:
+animation: name duration repeat;
+ 
+Repeat values:
+infinite    (keeps looping)
+1           (plays once)
+3           (plays 3 times)
+ 
+Explanation:
+ 
+@keyframes defines the animation.
+animation applies it to an element.
+ 
+========================================
+21. CSS Media Queries
+========================================
+ 
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
+ 
+@media (min-width: 768px) {
+    .container {
+        width: 700px;
+    }
+}
+ 
+Explanation:
+ 
+Media queries make websites responsive.
+They apply styles based on screen size.
+ 
+max-width: 600px
+→ applies when screen is 600px or smaller
+ 
+min-width: 768px
+→ applies when screen is 768px or bigger
+ 
+========================================
+22. CSS Units
+========================================
+ 
+px      → pixels (fixed size)
+%       → percentage of parent
+em      → relative to parent font size
+rem     → relative to root font size
+vh      → viewport height
+vw      → viewport width
+ 
+Example:
+ 
+h1 { font-size: 2rem; }
+div { width: 50%; }
+section { height: 100vh; }
+ 
+Explanation:
+ 
+px
+→ exact fixed size
+ 
+%
+→ depends on parent size
+ 
+vh
+→ 100vh = full screen height
+ 
+rem
+→ consistent and easy to use
+ 
+========================================
+23. CSS Overflow
+========================================
+ 
+div {
+    overflow: visible;   (default)
+    overflow: hidden;
+    overflow: scroll;
+    overflow: auto;
+}
+ 
+Explanation:
+ 
+visible
+→ content goes outside the box
+ 
+hidden
+→ extra content is cut off
+ 
+scroll
+→ always shows scrollbar
+ 
+auto
+→ scrollbar only when needed
+ 
+========================================
+24. CSS Opacity and Visibility
+========================================
+ 
+Opacity:
+div {
+    opacity: 0.5;
+}
+ 
+Visibility:
+div {
+    visibility: hidden;
+}
+ 
+Display None:
+div {
+    display: none;
+}
+ 
+Explanation:
+ 
+opacity: 0.5
+→ element is 50% transparent
+→ still takes up space
+ 
+visibility: hidden
+→ element is invisible
+→ still takes up space
+ 
+display: none
+→ element is completely removed
+→ does NOT take up space
+ 
+========================================
+25. CSS Z-Index
+========================================
+ 
+.box1 {
+    position: absolute;
+    z-index: 1;
+}
+ 
+.box2 {
+    position: absolute;
+    z-index: 2;
+}
+ 
+Explanation:
+ 
+z-index controls which element
+appears on top of another.
+ 
+Higher number = on top
+Lower number = behind
+ 
+z-index only works with position
+(relative, absolute, fixed, sticky)
+ 
+========================================
+END OF CSS NOTES
+========================================
