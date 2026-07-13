@@ -1,0 +1,589 @@
+=======================================
+1. Introduction to JavaScript
+=======================================
+
+JavaScript is a programming language.
+
+It is used to make web pages interactive.
+
+JavaScript can:
+- change HTML content
+- change CSS styles
+- handle button clicks
+- store data
+- do calculations
+
+Example uses:
+- form validation
+- animations
+- games
+- calculators
+- shopping carts
+
+=======================================
+2. How to Add JavaScript
+=======================================
+
+3 Ways to add JavaScript:
+
+1. Inline JS (inside the tag)
+
+<button onclick="alert('Hello')">Click</button>
+
+2. Internal JS (inside <script> tag)
+
+<script>
+    alert('Hello');
+</script>
+
+3. External JS (separate .js file)
+
+<script src="script.js"></script>
+
+Explanation:
+
+External JS is the best practice.
+It keeps HTML and JS separate.
+
+=======================================
+3. Variables
+=======================================
+
+3 ways to declare variables:
+
+var name = 'Ali';       (old way)
+let name = 'Ali';       (modern)
+const name = 'Ali';     (never changes)
+
+Example:
+
+let age = 20;
+let name = 'Ali';
+const PI = 3.14;
+
+Explanation:
+
+let
+→ can be changed later
+→ use this most of the time
+
+const
+→ cannot be changed
+→ use for fixed values
+
+var
+→ old way, avoid using it
+
+=======================================
+4. Data Types
+=======================================
+
+String:
+let name = 'Ali';
+let city = "Lahore";
+
+Number:
+let age = 20;
+let price = 99.5;
+
+Boolean:
+let isLoggedIn = true;
+let isEmpty = false;
+
+Array:
+let fruits = ['apple', 'banana', 'mango'];
+
+Object:
+let person = {
+    name: 'Ali',
+    age: 20,
+    city: 'Lahore'
+};
+
+Null:
+let data = null;
+
+Undefined:
+let x;
+
+Explanation:
+
+String  → text in quotes
+Number  → any number
+Boolean → true or false only
+Array   → list of items
+Object  → key value pairs
+
+=======================================
+5. Operators
+=======================================
+
+Arithmetic:
++   addition
+-   subtraction
+*   multiplication
+/   division
+%   remainder
+
+Example:
+let result = 10 + 5;    // 15
+let result = 10 % 3;    // 1
+
+Comparison:
+==    equal value
+===   equal value and type
+!=    not equal
+>     greater than
+<     less than
+>=    greater than or equal
+<=    less than or equal
+
+Example:
+5 == '5'    // true  (value same)
+5 === '5'   // false (type different)
+
+Logical:
+&&    AND (both must be true)
+||    OR  (one must be true)
+!     NOT (opposite)
+
+Example:
+true && false   // false
+true || false   // true
+!true           // false
+
+=======================================
+6. Strings
+=======================================
+
+let name = 'Ali';
+
+String methods:
+
+name.length         // 3
+name.toUpperCase()  // 'ALI'
+name.toLowerCase()  // 'ali'
+name.includes('A')  // true
+
+Template Literal:
+let age = 20;
+let msg = `My name is ${name} and I am ${age} years old`;
+
+Explanation:
+
+Template literal uses backticks ``
+${} is used to insert variables inside
+
+=======================================
+7. Arrays
+=======================================
+
+let fruits = ['apple', 'banana', 'mango'];
+
+Access:
+fruits[0]   // 'apple'
+fruits[1]   // 'banana'
+fruits[2]   // 'mango'
+
+Array methods:
+
+fruits.push('orange');
+→ adds to END of array
+
+fruits.pop();
+→ removes from END of array
+
+fruits.length
+→ how many items (3)
+
+fruits.forEach(fruit => {
+    console.log(fruit);
+});
+→ loops through every item
+
+fruits.map(fruit => {
+    return fruit + '!';
+});
+→ makes new array with changes
+
+fruits.filter(fruit => {
+    return fruit != 'apple';
+});
+→ removes items you dont want
+
+Explanation:
+
+push    → add item
+pop     → remove last item
+forEach → loop through all
+map     → change all items
+filter  → remove some items
+
+=======================================
+8. Objects
+=======================================
+
+let person = {
+    name: 'Ali',
+    age: 20,
+    city: 'Lahore'
+};
+
+Access:
+person.name     // 'Ali'
+person.age      // 20
+person.city     // 'Lahore'
+
+Add new property:
+person.email = 'ali@gmail.com';
+
+Nested Object:
+let student = {
+    name: 'Ali',
+    marks: {
+        english: 90,
+        maths: 85
+    }
+};
+
+student.marks.english   // 90
+student.marks.maths     // 85
+
+Explanation:
+
+Object stores data in key value pairs
+key   → property name
+value → property value
+dot(.) → access the value
+
+=======================================
+9. Functions
+=======================================
+
+Normal Function:
+function sayHello() {
+    console.log('Hello!');
+}
+sayHello();
+
+Function with Parameters:
+function addNumbers(a, b) {
+    return a + b;
+}
+let result = addNumbers(5, 3);  // 8
+
+Arrow Function:
+let addNumbers = (a, b) => {
+    return a + b;
+}
+
+Short Arrow Function:
+let addNumbers = (a, b) => a + b;
+
+Explanation:
+
+function → defines the function
+()       → parameters go here
+{}       → code goes here
+return   → sends value back
+calling  → functionName() runs it
+
+=======================================
+10. If Else
+=======================================
+
+let age = 20;
+
+if (age >= 18) {
+    console.log('Adult');
+} else {
+    console.log('Not Adult');
+}
+
+Shorthand (Ternary):
+let msg = age >= 18 ? 'Adult' : 'Not Adult';
+
+Multiple conditions:
+if (age < 13) {
+    console.log('Child');
+} else if (age < 18) {
+    console.log('Teenager');
+} else {
+    console.log('Adult');
+}
+
+Explanation:
+
+if      → check condition
+else if → check another condition
+else    → if nothing matched
+?:      → short way to write if else
+
+=======================================
+11. Loops
+=======================================
+
+For Loop:
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+// prints 0 1 2 3 4
+
+While Loop:
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+forEach Loop:
+let fruits = ['apple', 'banana', 'mango'];
+fruits.forEach(fruit => {
+    console.log(fruit);
+});
+
+Explanation:
+
+for     → runs fixed number of times
+while   → runs until condition false
+forEach → loops through array items
+
+=======================================
+12. DOM - Selecting Elements
+=======================================
+
+By ID:
+document.getElementById('myId');
+
+By Class:
+document.querySelector('.myClass');
+
+By Tag:
+document.querySelector('h1');
+
+Example:
+
+let btn = document.querySelector('.btn');
+let heading = document.getElementById('title');
+
+Explanation:
+
+DOM = Document Object Model
+It lets JS access HTML elements
+
+querySelector  → selects first match
+getElementById → selects by id
+
+=======================================
+13. DOM - Changing Elements
+=======================================
+
+Change Text:
+element.innerText = 'New Text';
+
+Change HTML:
+element.innerHTML = '<b>Bold Text</b>';
+
+Change Style:
+element.style.color = 'red';
+element.style.fontSize = '20px';
+element.style.display = 'none';
+
+Change Visibility:
+element.style.visibility = 'hidden';
+element.style.visibility = 'visible';
+
+Explanation:
+
+innerText  → changes text only
+innerHTML  → changes HTML inside
+style      → changes CSS directly
+
+=======================================
+14. Events
+=======================================
+
+onclick:
+<button onclick="sayHello()">Click</button>
+
+addEventListener:
+btn.addEventListener('click', function() {
+    console.log('clicked!');
+});
+
+Common Events:
+click       → mouse click
+mouseover   → mouse hover
+keypress    → key pressed
+submit      → form submitted
+load        → page loaded
+
+Explanation:
+
+Events let JS react to user actions
+onclick is the most common event
+
+=======================================
+15. localStorage
+=======================================
+
+Save data:
+localStorage.setItem('name', 'Ali');
+
+Get data:
+let name = localStorage.getItem('name');
+
+Delete one:
+localStorage.removeItem('name');
+
+Delete all:
+localStorage.clear();
+
+Save Array or Object:
+let fruits = ['apple', 'banana'];
+localStorage.setItem('fruits', JSON.stringify(fruits));
+
+Get Array or Object:
+let saved = localStorage.getItem('fruits');
+let fruits = JSON.parse(saved);
+
+Explanation:
+
+localStorage saves data in browser
+data stays even after page closes
+
+setItem  → save
+getItem  → get
+clear    → delete all
+
+JSON.stringify → array to string
+JSON.parse     → string to array
+
+=======================================
+16. JSON
+=======================================
+
+JSON.stringify:
+let arr = ['001', '002'];
+JSON.stringify(arr);
+// → '["001","002"]'
+// converts array to string
+
+JSON.parse:
+let str = '["001","002"]';
+JSON.parse(str);
+// → ['001', '002']
+// converts string to array
+
+Explanation:
+
+JSON = JavaScript Object Notation
+
+stringify → JS to String
+parse     → String to JS
+
+Used with localStorage because
+localStorage only saves strings
+
+=======================================
+17. Math Object
+=======================================
+
+Math.random()
+→ random number between 0 and 1
+
+Math.random() * 3
+→ random number between 0 and 3
+
+Math.floor(4.7)
+→ rounds DOWN → 4
+
+Math.ceil(4.2)
+→ rounds UP → 5
+
+Math.round(4.5)
+→ rounds NEAREST → 5
+
+Math.max(1, 5, 3)
+→ biggest number → 5
+
+Math.min(1, 5, 3)
+→ smallest number → 1
+
+Example:
+let random = Math.floor(Math.random() * 3);
+// gives 0, 1, or 2
+
+=======================================
+18. Conditional (Ternary) Operator
+=======================================
+
+Normal if else:
+if (score > 50) {
+    result = 'Pass';
+} else {
+    result = 'Fail';
+}
+
+Ternary (short way):
+let result = score > 50 ? 'Pass' : 'Fail';
+
+Explanation:
+
+condition ? 'if true' : 'if false'
+
+? means then
+: means else
+
+=======================================
+19. Template Literals
+=======================================
+
+Old way:
+let msg = 'Hello ' + name + ' you are ' + age;
+
+New way (Template Literal):
+let msg = `Hello ${name} you are ${age}`;
+
+In HTML:
+innerHTML = `
+    <div class="card">
+        <h2>${item.name}</h2>
+        <p>Rs ${item.price}</p>
+    </div>
+`;
+
+Explanation:
+
+use backticks `` not quotes ''
+${} puts variable inside string
+can write HTML on multiple lines
+
+=======================================
+20. Destructuring
+=======================================
+
+Object Destructuring:
+let person = { name: 'Ali', age: 20 };
+
+Old way:
+let name = person.name;
+let age  = person.age;
+
+New way (Destructuring):
+let { name, age } = person;
+
+Array Destructuring:
+let fruits = ['apple', 'banana', 'mango'];
+let [first, second] = fruits;
+// first  = 'apple'
+// second = 'banana'
+
+Explanation:
+
+Destructuring is a shortcut
+to get values from objects and arrays
+
+=======================================
+END OF JAVASCRIPT NOTES
+=======================================
