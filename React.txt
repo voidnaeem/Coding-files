@@ -1,0 +1,2949 @@
+# =======================================
+
+# REACT COMPLETE NOTES
+
+# =======================================
+
+These notes explain React in simple human language.
+
+The goal is not to memorize React.
+
+The goal is to understand:
+
+→ What React does
+→ Why we use it
+→ How components work
+→ How data moves
+→ How UI changes
+→ How React talks to APIs
+→ How routing works
+→ How global state works
+
+# =======================================
+
+# 1. Introduction to React
+
+# =======================================
+
+React is a JavaScript library used to build user interfaces.
+
+Simple meaning:
+
+→ JavaScript gives us programming power
+→ React helps us build and manage UI
+
+React is especially useful for interactive websites and web applications.
+
+Examples:
+
+* Shopping websites
+* Dashboards
+* Social media apps
+* Todo apps
+* Admin panels
+* Myntra-like websites
+
+React's main idea:
+
+→ Break a big UI into small reusable components.
+
+Example:
+
+Myntra
+
+```
+Header
+Navbar
+ProductList
+    ProductCard
+    ProductCard
+    ProductCard
+Footer
+```
+
+Instead of writing one huge file, we divide the UI into manageable pieces.
+
+Explanation:
+
+React → JavaScript library for building UI
+
+Component → reusable piece of UI
+
+# =======================================
+
+# 2. Why React?
+
+# =======================================
+
+Imagine a large website.
+
+Without components, the code can become very difficult to manage.
+
+React lets us divide the website into components.
+
+Example:
+
+```
+Header
+Product
+Button
+Footer
+Cart
+```
+
+Each component can have its own logic and UI.
+
+Main benefits:
+
+* Reusable components
+* Easier code management
+* Interactive UI
+* State management
+* Routing
+* Large application support
+
+Simple story:
+
+Instead of building one huge house,
+
+we build:
+
+```
+Room
+Door
+Window
+Kitchen
+Bathroom
+```
+
+Then combine them.
+
+React does something similar with UI.
+
+# =======================================
+
+# 3. Component
+
+# =======================================
+
+A component is a reusable piece of UI.
+
+Example:
+
+function Header() {
+return <h1>Myntra</h1>;
+}
+
+Use it:
+
+<Header />
+
+Another example:
+
+function Button() {
+return <button>Click Me</button>;
+}
+
+Use:
+
+<Button />
+
+Explanation:
+
+Component → reusable UI piece
+
+Think of components like LEGO blocks.
+
+```
+Header
+Product
+Button
+Footer
+```
+
+can be combined to build a complete website.
+
+# =======================================
+
+# 4. JSX
+
+# =======================================
+
+JSX allows us to write HTML-like code inside JavaScript.
+
+Example:
+
+function App() {
+return <h1>Hello React</h1>;
+}
+
+This looks like HTML,
+
+but it is written inside JavaScript.
+
+JSX can also use JavaScript values.
+
+Example:
+
+const name = "Ali";
+
+function App() {
+return <h1>Hello {name}</h1>;
+}
+
+Output:
+
+Hello Ali
+
+Explanation:
+
+{} → lets us use JavaScript expressions inside JSX.
+
+Example:
+
+<h1>{name}</h1>
+
+React sees:
+
+name → JavaScript variable
+
+# =======================================
+
+# 5. JSX Rules
+
+# =======================================
+
+JSX looks like HTML but has some differences.
+
+Example:
+
+HTML:
+
+<div class="box"></div>
+
+JSX:
+
+<div className="box"></div>
+
+Important:
+
+class → className
+
+for → htmlFor
+
+JavaScript expressions go inside:
+
+{}
+
+Example:
+
+const price = 500;
+
+<p>Price: {price}</p>
+
+JSX should return one parent structure.
+
+Example:
+
+<> <h1>Hello</h1> <p>Welcome</p>
+</>
+
+The empty tags are called Fragment.
+
+# =======================================
+
+# 6. Fragment
+
+# =======================================
+
+Sometimes we don't want to add an extra div.
+
+Instead:
+
+<> <h1>Hello</h1> <p>Welcome</p>
+</>
+
+This is a Fragment.
+
+It groups elements without adding an extra DOM element.
+
+Explanation:
+
+Fragment → group elements without unnecessary HTML element.
+
+# =======================================
+
+# 7. Props
+
+# =======================================
+
+Props means properties.
+
+Props are used to send data from a parent component to a child component.
+
+Example:
+
+<Product name="Nike Shoes" price={5000} />
+
+Here:
+
+name → "Nike Shoes"
+
+price → 5000
+
+The Product component receives these values.
+
+function Product(props) {
+return ( <div> <h2>{props.name}</h2> <p>{props.price}</p> </div>
+);
+}
+
+Simple story:
+
+Parent has data.
+
+Parent sends data.
+
+Child receives data.
+
+```
+Parent
+   ↓
+ Props
+   ↓
+ Child
+```
+
+Explanation:
+
+Props → data sent from parent to child.
+
+# =======================================
+
+# 8. Props Destructuring
+
+# =======================================
+
+Instead of:
+
+function Product(props) {
+return <h2>{props.name}</h2>;
+}
+
+We can destructure:
+
+function Product({ name, price }) {
+return ( <div> <h2>{name}</h2> <p>{price}</p> </div>
+);
+}
+
+This is shorter and easier to read.
+
+# =======================================
+
+# 9. Props are Read-Only
+
+# =======================================
+
+A child component should not directly change its props.
+
+Example:
+
+<Product name="Nike" />
+
+The child receives:
+
+name = "Nike"
+
+The child should use the value, not directly modify the prop.
+
+If data needs to change:
+
+→ use state
+→ or ask the parent to change it through a function
+
+# =======================================
+
+# 10. Children Props
+
+# =======================================
+
+Sometimes we want to put content inside a component.
+
+Example:
+
+<Container>
+    <h1>Hello</h1>
+</Container>
+
+The content inside Container becomes:
+
+children
+
+Container:
+
+function Container({ children }) {
+return ( <div className="container">
+{children} </div>
+);
+}
+
+Simple meaning:
+
+children → whatever content is placed inside the component.
+
+Example:
+
+<Card>
+    <h2>Nike Shoes</h2>
+    <p>Price: Rs 5000</p>
+</Card>
+
+The Card component receives both elements as children.
+
+Why use it?
+
+Because it makes wrapper components reusable.
+
+The same Container can contain:
+
+→ heading
+→ product
+→ form
+→ image
+→ another component
+
+# =======================================
+
+# 11. State
+
+# =======================================
+
+State is data that can change inside a component.
+
+Example:
+
+Cart count:
+
+```
+Cart: 0
+```
+
+User clicks Add:
+
+```
+Cart: 1
+```
+
+Clicks again:
+
+```
+Cart: 2
+```
+
+This changing value is state.
+
+Simple meaning:
+
+State → component's changing memory.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+count → current value
+
+setCount → function used to change it
+
+0 → initial value
+
+# =======================================
+
+# 12. useState
+
+# =======================================
+
+useState is a React Hook used to create state.
+
+Import:
+
+import { useState } from "react";
+
+Example:
+
+const [count, setCount] = useState(0);
+
+Change value:
+
+setCount(10);
+
+Do not normally do:
+
+count = 10;
+
+Instead:
+
+setCount(10);
+
+Why?
+
+Because React needs to know that the state changed so it can update the UI.
+
+Story:
+
+```
+State changes
+     ↓
+React knows
+     ↓
+UI updates
+```
+
+# =======================================
+
+# 13. State Example
+
+# =======================================
+
+import { useState } from "react";
+
+function App() {
+
+```
+const [count, setCount] = useState(0);
+
+return (
+    <div>
+        <h1>{count}</h1>
+
+        <button onClick={() => setCount(count + 1)}>
+            Add
+        </button>
+    </div>
+);
+```
+
+}
+
+When button is clicked:
+
+count changes
+
+0 → 1
+
+1 → 2
+
+2 → 3
+
+React updates the UI.
+
+# =======================================
+
+# 14. Event Handling
+
+# =======================================
+
+Events are actions performed by the user.
+
+Examples:
+
+* Click
+* Type
+* Submit
+* Mouse enter
+* Keyboard press
+
+React handles events using event props.
+
+Example:
+
+<button onClick={handleClick}>
+    Click
+</button>
+
+Function:
+
+function handleClick() {
+console.log("Clicked");
+}
+
+Common events:
+
+onClick
+→ button click
+
+onChange
+→ input value changes
+
+onSubmit
+→ form submitted
+
+onMouseEnter
+→ mouse enters element
+
+onKeyDown
+→ keyboard key pressed
+
+# =======================================
+
+# 15. Important Event Difference
+
+# =======================================
+
+Correct:
+
+<button onClick={handleClick}>
+    Click
+</button>
+
+Usually wrong:
+
+<button onClick={handleClick()}>
+    Click
+</button>
+
+Why?
+
+handleClick
+
+→ gives React the function
+
+handleClick()
+
+→ immediately calls the function
+
+If arguments are required:
+
+<button onClick={() => handleClick("Ali")}>
+Click </button>
+
+# =======================================
+
+# 16. Event Object
+
+# =======================================
+
+React gives us information about the event.
+
+Example:
+
+function handleChange(event) {
+console.log(event.target.value);
+}
+
+Input:
+
+<input onChange={handleChange} />
+
+event.target
+
+→ element where event happened
+
+event.target.value
+
+→ current input value
+
+# =======================================
+
+# 17. Forms
+
+# =======================================
+
+React forms usually use state.
+
+Example:
+
+import { useState } from "react";
+
+function App() {
+
+```
+const [name, setName] = useState("");
+
+function handleChange(event) {
+    setName(event.target.value);
+}
+
+return (
+    <input
+        value={name}
+        onChange={handleChange}
+    />
+);
+```
+
+}
+
+Story:
+
+User types
+
+```
+↓
+```
+
+onChange
+
+```
+↓
+```
+
+handleChange
+
+```
+↓
+```
+
+setName
+
+```
+↓
+```
+
+state changes
+
+```
+↓
+```
+
+UI updates
+
+# =======================================
+
+# 18. onSubmit
+
+# =======================================
+
+Forms can use onSubmit.
+
+function handleSubmit(event) {
+event.preventDefault();
+
+```
+console.log("Form submitted");
+```
+
+}
+
+<form onSubmit={handleSubmit}>
+    <input />
+    <button type="submit">
+        Submit
+    </button>
+</form>
+
+event.preventDefault()
+
+→ stops the browser's default form submission behavior.
+
+This is commonly useful in React forms.
+
+# =======================================
+
+# 19. Conditional Rendering
+
+# =======================================
+
+Conditional rendering means:
+
+→ Show different UI depending on a condition.
+
+Example:
+
+const isLoggedIn = true;
+
+{isLoggedIn ? <Dashboard /> : <Login />}
+
+If true:
+
+Dashboard
+
+If false:
+
+Login
+
+Another example:
+
+{isLoggedIn && <Dashboard />}
+
+This means:
+
+If isLoggedIn is true → show Dashboard.
+
+# =======================================
+
+# 20. Ternary Operator in React
+
+# =======================================
+
+Condition:
+
+condition ? trueResult : falseResult
+
+Example:
+
+{isLoggedIn ? ( <Logout />
+) : ( <Login />
+)}
+
+Simple meaning:
+
+If condition is true → first UI
+
+Otherwise → second UI
+
+# =======================================
+
+# 21. Rendering Lists
+
+# =======================================
+
+Suppose we have products:
+
+const products = [
+{ id: 1, name: "Shoes" },
+{ id: 2, name: "Shirt" },
+{ id: 3, name: "Watch" }
+];
+
+We don't want to manually write:
+
+<Product />
+<Product />
+<Product />
+
+Instead use map():
+
+products.map(product => ( <Product
+     key={product.id}
+     product={product}
+ />
+))
+
+map()
+
+→ goes through every item
+
+→ creates UI for every item
+
+# =======================================
+
+# 22. key in React
+
+# =======================================
+
+When rendering lists, React needs a unique key.
+
+Example:
+
+products.map(product => ( <Product
+     key={product.id}
+     product={product}
+ />
+))
+
+key helps React identify each item.
+
+Best:
+
+key={product.id}
+
+Avoid using array index when a proper unique ID is available.
+
+Explanation:
+
+key → tells React which list item is which.
+
+# =======================================
+
+# 23. Component Communication
+
+# =======================================
+
+Parent to child:
+
+→ Props
+
+Example:
+
+<Child name="Ali" />
+
+Child to parent:
+
+→ Parent sends a function as a prop.
+
+Example:
+
+<Child onAdd={handleAdd} />
+
+Child:
+
+<button onClick={onAdd}>
+    Add
+</button>
+
+Simple story:
+
+Parent has state.
+
+Child needs to tell parent:
+
+"Something happened."
+
+Parent gives child a function.
+
+Child calls that function.
+
+# =======================================
+
+# 24. Lifting State Up
+
+# =======================================
+
+Sometimes two child components need the same data.
+
+Example:
+
+```
+    Parent
+    State
+    /   \
+   ↓     ↓
+Input   Display
+```
+
+Instead of keeping separate state in both children:
+
+→ move state to their common parent.
+
+This is called:
+
+Lifting State Up
+
+Simple meaning:
+
+Move shared state to the nearest common parent.
+
+# =======================================
+
+# 25. One-Way Data Flow
+
+# =======================================
+
+React normally follows one-way data flow.
+
+```
+Parent
+   ↓
+ Props
+   ↓
+Child
+```
+
+Data normally moves from parent to child.
+
+If child needs to affect parent:
+
+→ parent passes a function to child.
+
+This makes data flow easier to understand.
+
+# =======================================
+
+# 26. useEffect
+
+# =======================================
+
+useEffect is used when a component needs to work with something outside normal UI rendering.
+
+Common examples:
+
+* API request
+* Timer
+* Browser event listener
+* Window/document interaction
+* Synchronizing with external systems
+
+Simple story:
+
+Component renders
+
+```
+↓
+```
+
+useEffect runs
+
+```
+↓
+```
+
+Do some external work
+
+Example:
+
+useEffect(() => {
+console.log("Component loaded");
+}, []);
+
+The empty array:
+
+[]
+
+means the effect has no dependencies.
+
+# =======================================
+
+# 27. useEffect API Story
+
+# =======================================
+
+Imagine a Myntra page.
+
+Initially:
+
+products = []
+
+Component renders.
+
+Then useEffect runs.
+
+```
+React
+  ↓
+API request
+  ↓
+Server
+  ↓
+Products returned
+  ↓
+setProducts(data)
+  ↓
+State changes
+  ↓
+React updates UI
+  ↓
+Products appear
+```
+
+Example:
+
+useEffect(() => {
+
+```
+fetch("/api/products")
+    .then(response => response.json())
+    .then(data => {
+        setProducts(data);
+    });
+```
+
+}, []);
+
+Simple meaning:
+
+Component appears
+
+→ fetch products
+
+→ save products in state
+
+→ display products.
+
+# =======================================
+
+# 28. useEffect Dependencies
+
+# =======================================
+
+Example:
+
+useEffect(() => {
+console.log("Run after mount");
+}, []);
+
+[]
+
+→ effect has no dependencies.
+
+Another:
+
+useEffect(() => {
+console.log("Count changed");
+}, [count]);
+
+[count]
+
+→ effect runs when count changes.
+
+Simple memory:
+
+[]
+
+→ no dependency changes
+
+[count]
+
+→ watch count
+
+# =======================================
+
+# 29. useEffect Cleanup
+
+# =======================================
+
+Some effects create things that need to be stopped.
+
+Example:
+
+Timer.
+
+useEffect(() => {
+
+```
+const timer = setInterval(() => {
+    console.log("Hello");
+}, 1000);
+
+return () => {
+    clearInterval(timer);
+};
+```
+
+}, []);
+
+The returned function is cleanup.
+
+Why?
+
+Because when the component no longer needs the timer:
+
+→ stop the timer.
+
+Common cleanup examples:
+
+* clearInterval
+* removeEventListener
+* unsubscribe from subscriptions
+
+# =======================================
+
+# 30. useRef
+
+# =======================================
+
+useRef is used to keep a value/reference without causing a re-render when the ref value changes.
+
+Common use:
+
+→ Access DOM elements
+
+Example:
+
+import { useRef } from "react";
+
+function App() {
+
+```
+const inputRef = useRef(null);
+
+function focusInput() {
+    inputRef.current.focus();
+}
+
+return (
+    <div>
+        <input ref={inputRef} />
+
+        <button onClick={focusInput}>
+            Focus
+        </button>
+    </div>
+);
+```
+
+}
+
+When button is clicked:
+
+→ input gets focus.
+
+Simple difference:
+
+useState
+
+→ changing state causes re-render
+
+useRef
+
+→ changing ref does not cause re-render
+
+# =======================================
+
+# 31. useContext
+
+# =======================================
+
+Sometimes data needs to be used by many components.
+
+Example:
+
+```
+App
+ ↓
+```
+
+Header
+↓
+Navbar
+↓
+Profile
+↓
+User
+
+Passing user through every component can become annoying.
+
+This is called:
+
+Prop Drilling
+
+Context can help.
+
+Context allows shared values to be provided to components without manually passing the prop through every level.
+
+Example:
+
+<UserContext.Provider value={user}> <App />
+</UserContext.Provider>
+
+Then:
+
+const user = useContext(UserContext);
+
+Simple meaning:
+
+Context → share data with many components.
+
+Common examples:
+
+* User information
+* Theme
+* Language
+* Authentication state
+
+# =======================================
+
+# 32. useReducer
+
+# =======================================
+
+useReducer is useful when state logic becomes more complex.
+
+Simple state:
+
+useState
+
+Complex state:
+
+useReducer
+
+Example:
+
+const [state, dispatch] = useReducer(
+reducer,
+initialState
+);
+
+Instead of directly changing state:
+
+→ dispatch an action.
+
+Example:
+
+dispatch({
+type: "ADD_ITEM",
+payload: product
+});
+
+Simple story:
+
+Component
+
+```
+↓
+```
+
+dispatch(action)
+
+```
+↓
+```
+
+Reducer decides what should happen
+
+```
+↓
+```
+
+State changes
+
+# =======================================
+
+# 33. Custom Hooks
+
+# =======================================
+
+A custom hook is a reusable function that contains React hook logic.
+
+Example:
+
+function useFetch() {
+// fetching logic
+}
+
+Then:
+
+const data = useFetch();
+
+Custom hook names normally start with:
+
+use
+
+Examples:
+
+useFetch
+
+useAuth
+
+useLocalStorage
+
+useWindowSize
+
+Why use them?
+
+If the same logic is needed in multiple components:
+
+→ put it in one custom hook
+
+→ reuse it.
+
+# =======================================
+
+# 34. React Router
+
+# =======================================
+
+React Router is used for navigation between pages/views in a React application.
+
+Example Myntra:
+
+/
+
+/men
+
+/women
+
+/kids
+
+/bag
+
+/profile
+
+Each path can display a different component.
+
+Example:
+
+{
+path: "/bag",
+element: <Bag />
+}
+
+When user goes to:
+
+/bag
+
+React shows:
+
+<Bag />
+
+# =======================================
+
+# 35. Link
+
+# =======================================
+
+React Router provides Link for navigation.
+
+Example:
+
+<Link to="/bag">
+    Bag
+</Link>
+
+Instead of manually changing the browser URL with normal JavaScript.
+
+Simple meaning:
+
+Link → navigate to another route.
+
+# =======================================
+
+# 36. NavLink
+
+# =======================================
+
+NavLink works like Link but can also help style the active route.
+
+Example:
+
+<NavLink to="/men">
+    Men
+</NavLink>
+
+Useful for navigation menus.
+
+Example:
+
+Home
+Men
+Women
+Kids
+
+The current page can have a different style.
+
+# =======================================
+
+# 37. Nested Routes
+
+# =======================================
+
+Routes can have children.
+
+Example:
+
+{
+path: "/",
+element: <App />,
+children: [
+{
+path: "bag",
+element: <Bag />
+}
+]
+}
+
+App is the parent.
+
+Bag is the child route.
+
+# =======================================
+
+# 38. Outlet
+
+# =======================================
+
+Outlet is where the child route appears.
+
+Example:
+
+function App() {
+return (
+<> <Header />
+
+```
+        <Outlet />
+
+        <Footer />
+    </>
+);
+```
+
+}
+
+If the current child route is:
+
+<Bag />
+
+Then the UI becomes:
+
+```
+Header
+
+Bag
+
+Footer
+```
+
+Simple meaning:
+
+Outlet → place where nested route component is rendered.
+
+# =======================================
+
+# 39. API
+
+# =======================================
+
+API allows different parts of an application to communicate.
+
+In a full-stack application:
+
+```
+React
+  ↓
+ API
+  ↓
+```
+
+Backend
+↓
+Database
+
+Backend sends data back:
+
+```
+Database
+   ↓
+Backend
+   ↓
+  API
+   ↓
+ React
+```
+
+Example:
+
+Myntra React asks:
+
+"Give me products."
+
+Backend responds:
+
+"Here are the products."
+
+# =======================================
+
+# 40. fetch()
+
+# =======================================
+
+fetch() is used to make HTTP requests from JavaScript.
+
+Example:
+
+fetch("/api/products")
+.then(response => response.json())
+.then(data => {
+console.log(data);
+});
+
+Story:
+
+fetch()
+
+→ request bhejta hai
+
+response.json()
+
+→ response ko JavaScript data mein convert karta hai
+
+data
+
+→ actual data
+
+# =======================================
+
+# 41. API with useEffect
+
+# =======================================
+
+A common React pattern:
+
+useEffect(() => {
+
+```
+fetch("/api/products")
+    .then(response => response.json())
+    .then(data => {
+        setProducts(data);
+    });
+```
+
+}, []);
+
+Story:
+
+Component loads
+
+↓
+
+useEffect runs
+
+↓
+
+API request
+
+↓
+
+Data comes
+
+↓
+
+setProducts()
+
+↓
+
+State changes
+
+↓
+
+UI updates
+
+# =======================================
+
+# 42. Loading State
+
+# =======================================
+
+API data aane mein time lag sakta hai.
+
+During that time we can show:
+
+Loading...
+
+Example:
+
+const [loading, setLoading] = useState(true);
+
+When request starts:
+
+setLoading(true);
+
+When data arrives:
+
+setLoading(false);
+
+UI:
+
+{loading ? ( <p>Loading...</p>
+) : ( <ProductList />
+)}
+
+Simple idea:
+
+Loading → wait
+
+Success → show data
+
+# =======================================
+
+# 43. Error State
+
+# =======================================
+
+API request fail bhi ho sakti hai.
+
+Example:
+
+const [error, setError] = useState(null);
+
+If something goes wrong:
+
+setError("Something went wrong");
+
+UI:
+
+{error ? ( <p>{error}</p>
+) : ( <ProductList />
+)}
+
+Good applications normally handle:
+
+Loading
+
+Success
+
+Error
+
+# =======================================
+
+# 44. localStorage in React
+
+# =======================================
+
+localStorage belongs to the browser.
+
+It allows data to remain after the page is refreshed or closed.
+
+Example:
+
+localStorage.setItem(
+"name",
+"Ali"
+);
+
+Get:
+
+const name = localStorage.getItem("name");
+
+Remove:
+
+localStorage.removeItem("name");
+
+Delete all:
+
+localStorage.clear();
+
+React can use localStorage for things like:
+
+* Preferences
+* Theme
+* Some client-side data
+* Cart information
+
+Remember:
+
+localStorage stores strings.
+
+For arrays/objects:
+
+JSON.stringify()
+
+and
+
+JSON.parse()
+
+are commonly used.
+
+# =======================================
+
+# 45. JSON in React
+
+# =======================================
+
+Suppose:
+
+const products = [
+{ id: 1, name: "Shoes" },
+{ id: 2, name: "Shirt" }
+];
+
+Convert to string:
+
+JSON.stringify(products)
+
+Convert string back:
+
+JSON.parse(savedData)
+
+Simple:
+
+JSON.stringify
+
+→ JavaScript data to JSON string
+
+JSON.parse
+
+→ JSON string back to JavaScript data
+
+# =======================================
+
+# 46. Redux
+
+# =======================================
+
+Redux is used for managing application state.
+
+It becomes useful when many components need the same data.
+
+Example:
+
+```
+Store
+  |
+  |--- products
+  |--- cart
+  |--- user
+  |--- wishlist
+```
+
+Instead of passing data through many components:
+
+→ keep shared state in a central store.
+
+# =======================================
+
+# 47. Redux Toolkit
+
+# =======================================
+
+Today, Redux Toolkit is the recommended way to write Redux logic.
+
+Important Redux Toolkit concepts:
+
+* Store
+* Slice
+* Reducer
+* Action
+* Dispatch
+* Selector
+
+Simple story:
+
+Component
+
+↓
+
+dispatch(action)
+
+↓
+
+Redux Store
+
+↓
+
+Reducer
+
+↓
+
+State changes
+
+↓
+
+Component gets updated data
+
+# =======================================
+
+# 48. Redux Store
+
+# =======================================
+
+Store is the central place where Redux state is kept.
+
+Example:
+
+store
+
+```
+products
+cart
+user
+fetchStatus
+```
+
+Think of Store as a central cupboard.
+
+Different components can access the required data from it.
+
+# =======================================
+
+# 49. createSlice
+
+# =======================================
+
+createSlice helps us create Redux state and reducers together.
+
+Example:
+
+const cartSlice = createSlice({
+
+```
+name: "cart",
+
+initialState: [],
+
+reducers: {
+
+    addItem: (state, action) => {
+        state.push(action.payload);
+    }
+
+}
+```
+
+});
+
+A slice usually represents one area of application state.
+
+Examples:
+
+cartSlice
+
+productSlice
+
+userSlice
+
+# =======================================
+
+# 50. useSelector
+
+# =======================================
+
+useSelector is used to READ data from Redux store.
+
+Example:
+
+const items = useSelector(
+store => store.items
+);
+
+Simple:
+
+useSelector
+
+→ Redux store se data lena.
+
+# =======================================
+
+# 51. useDispatch
+
+# =======================================
+
+useDispatch is used to SEND an action to Redux.
+
+Example:
+
+const dispatch = useDispatch();
+
+dispatch(addItem(product));
+
+Simple memory:
+
+useSelector
+
+→ READ data
+
+useDispatch
+
+→ SEND action
+
+# =======================================
+
+# 52. Context vs Redux
+
+# =======================================
+
+Both can help share state.
+
+Context:
+
+→ simple shared data
+
+Redux Toolkit:
+
+→ larger/complex application state
+
+Do not think:
+
+"Redux must be used in every React project."
+
+It depends on the project.
+
+For a small project:
+
+useState
+
+Context
+
+may be enough.
+
+For a larger application:
+
+Redux Toolkit
+
+can be useful.
+
+# =======================================
+
+# 53. React.memo
+
+# =======================================
+
+React.memo can prevent unnecessary re-rendering of a component when its props have not changed.
+
+Example:
+
+export default React.memo(Product);
+
+Simple meaning:
+
+If the component receives the same props,
+
+React may reuse the previous rendered result instead of unnecessarily rendering it again.
+
+Do not use memo everywhere.
+
+Use it when performance optimization is actually useful.
+
+# =======================================
+
+# 54. useMemo
+
+# =======================================
+
+useMemo is used to memoize a calculated value.
+
+Example:
+
+const total = useMemo(() => {
+
+```
+return calculateTotal(items);
+```
+
+}, [items]);
+
+Simple:
+
+useMemo
+
+→ remembers a calculated value.
+
+It can help avoid repeating expensive calculations when dependencies have not changed.
+
+# =======================================
+
+# 55. useCallback
+
+# =======================================
+
+useCallback memoizes a function reference.
+
+Example:
+
+const handleClick = useCallback(() => {
+console.log("Clicked");
+}, []);
+
+Simple:
+
+useCallback
+
+→ remembers a function.
+
+Easy difference:
+
+React.memo
+
+→ component
+
+useMemo
+
+→ value
+
+useCallback
+
+→ function
+
+# =======================================
+
+# 56. useState vs useRef
+
+# =======================================
+
+useState:
+
+→ changing value updates UI
+
+useRef:
+
+→ changing value does not cause re-render
+
+Example:
+
+useState:
+
+const [count, setCount] = useState(0);
+
+useRef:
+
+const countRef = useRef(0);
+
+Simple memory:
+
+State → UI needs to react to change
+
+Ref → keep a value/reference without triggering render
+
+# =======================================
+
+# 57. Re-render
+
+# =======================================
+
+When relevant state, props, or context changes, React may render the component again.
+
+Example:
+
+count = 0
+
+User clicks button.
+
+setCount(1)
+
+State changed.
+
+React updates the UI.
+
+Important:
+
+Re-render does NOT mean the browser completely reloads the page.
+
+React updates the necessary UI.
+
+# =======================================
+
+# 58. Virtual DOM
+
+# =======================================
+
+React uses an internal representation of the UI.
+
+When state changes:
+
+→ React determines what needs to change
+
+→ React updates the necessary DOM parts.
+
+Simple idea:
+
+Instead of thinking:
+
+"Refresh the whole page."
+
+Think:
+
+"React figures out which UI needs updating."
+
+# =======================================
+
+# 59. Reconciliation
+
+# =======================================
+
+Reconciliation is the process React uses to determine what changed between renders and what needs to be updated.
+
+Example:
+
+Before:
+
+```
+Product price = 500
+```
+
+After:
+
+```
+Product price = 600
+```
+
+React determines that the relevant UI changed.
+
+Then the required DOM update can happen.
+
+# =======================================
+
+# 60. StrictMode
+
+# =======================================
+
+StrictMode is a development feature that helps detect potential problems.
+
+Example:
+
+<StrictMode>
+    <App />
+</StrictMode>
+
+It can make certain development behaviors appear more than once.
+
+This is one reason beginners sometimes see:
+
+"My effect is running twice!"
+
+Development StrictMode checks should not be confused with production behavior.
+
+# =======================================
+
+# 61. Component Lifecycle
+
+# =======================================
+
+A component can be thought of as having stages:
+
+```
+Mount
+  ↓
+Update
+  ↓
+Unmount
+```
+
+Mount:
+
+→ component appears
+
+Update:
+
+→ state/props/context change
+
+Unmount:
+
+→ component is removed
+
+useEffect cleanup is especially important when a component is unmounted or when an effect needs to be replaced because dependencies changed.
+
+# =======================================
+
+# 62. Hooks
+
+# =======================================
+
+Hooks are React functions that let function components use React features.
+
+Important hooks:
+
+useState
+
+→ state
+
+useEffect
+
+→ side effects / external synchronization
+
+useRef
+
+→ refs / values without re-render
+
+useContext
+
+→ context
+
+useReducer
+
+→ complex state logic
+
+useMemo
+
+→ memoized value
+
+useCallback
+
+→ memoized function
+
+# =======================================
+
+# 63. Rules of Hooks
+
+# =======================================
+
+Hooks should normally be called:
+
+→ at the top level of a component or custom hook.
+
+Do not put hooks inside:
+
+* if statements
+* loops
+* nested functions
+
+Wrong:
+
+if (loggedIn) {
+const [user, setUser] = useState(null);
+}
+
+Correct:
+
+const [user, setUser] = useState(null);
+
+# =======================================
+
+# 64. npm
+
+# =======================================
+
+npm is commonly used to manage packages and run scripts in React projects.
+
+Important commands:
+
+npm install
+
+→ install dependencies
+
+npm run dev
+
+→ start development server
+
+npm run build
+
+→ create production build
+
+package.json contains:
+
+→ project information
+
+→ dependencies
+
+→ scripts
+
+# =======================================
+
+# 65. Vite
+
+# =======================================
+
+Vite is a modern development and build tool commonly used with React.
+
+It provides:
+
+→ development server
+
+→ fast development experience
+
+→ production build
+
+Typical command:
+
+npm create vite@latest
+
+Then install dependencies:
+
+npm install
+
+Run:
+
+npm run dev
+
+# =======================================
+
+# 66. Environment Variables
+
+# =======================================
+
+Environment variables can store configuration values.
+
+With Vite, client-side variables commonly use:
+
+VITE_
+
+Example:
+
+VITE_API_URL
+
+Access:
+
+import.meta.env.VITE_API_URL
+
+Important:
+
+Frontend environment variables are not automatically secret.
+
+If the value reaches the browser, users can inspect it.
+
+Do not put real secrets in frontend code.
+
+# =======================================
+
+# 67. React Project Structure
+
+# =======================================
+
+A React project can be organized like:
+
+src/
+
+```
+components/
+    Header.jsx
+    Product.jsx
+    Footer.jsx
+
+pages/
+    Home.jsx
+    Bag.jsx
+
+hooks/
+    useFetch.js
+
+store/
+    store.js
+    cartSlice.js
+
+App.jsx
+main.jsx
+```
+
+The exact structure can change depending on the project.
+
+The important idea is:
+
+→ Keep related code organized.
+
+# =======================================
+
+# 68. main.jsx
+
+# =======================================
+
+main.jsx is commonly the entry point where the React application is connected to the HTML page.
+
+Example:
+
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+
+createRoot(
+document.getElementById("root")
+).render( <App />
+);
+
+Simple story:
+
+HTML has:
+
+<div id="root"></div>
+
+React finds root.
+
+Then React puts:
+
+<App />
+
+inside it.
+
+# =======================================
+
+# 69. App Component
+
+# =======================================
+
+App is commonly the main/root component of the application UI.
+
+Example:
+
+function App() {
+return ( <div> <Header /> <Home /> <Footer /> </div>
+);
+}
+
+App can contain other components.
+
+# =======================================
+
+# 70. React Application Story
+
+# =======================================
+
+Now put everything together.
+
+Imagine Myntra.
+
+User opens the website.
+
+```
+↓
+```
+
+main.jsx starts React
+
+```
+↓
+```
+
+App component loads
+
+```
+↓
+```
+
+App contains Header, Products, Footer
+
+```
+↓
+```
+
+React Router decides which page/route is active
+
+```
+↓
+```
+
+Product component receives product data through props
+
+```
+↓
+```
+
+Products are rendered using map()
+
+```
+↓
+```
+
+Each product gets a unique key
+
+```
+↓
+```
+
+User clicks Add to Cart
+
+```
+↓
+```
+
+Event handler runs
+
+```
+↓
+```
+
+State or Redux state changes
+
+```
+↓
+```
+
+React updates the UI
+
+```
+↓
+```
+
+If products come from server:
+
+useEffect
+
+```
+↓
+```
+
+API request
+
+```
+↓
+```
+
+Backend
+
+```
+↓
+```
+
+Database
+
+```
+↓
+```
+
+Products returned
+
+```
+↓
+```
+
+State/Redux updated
+
+```
+↓
+```
+
+Products appear on screen
+
+This is the basic story of a real React application.
+
+# =======================================
+
+# 71. Most Important React Concepts
+
+# =======================================
+
+If you are revising React, focus first on these:
+
+1. Components
+2. JSX
+3. Props
+4. State
+5. useState
+6. Events
+7. Conditional Rendering
+8. Lists and map()
+9. key
+10. Forms
+11. Component communication
+12. Lifting State Up
+13. useEffect
+14. API / fetch
+15. React Router
+16. Outlet
+17. Context
+18. useRef
+19. Redux Toolkit
+20. useSelector
+21. useDispatch
+22. Custom Hooks
+
+These are the concepts you will use repeatedly.
+
+# =======================================
+
+# 72. Advanced React Concepts
+
+# =======================================
+
+After the basics, learn:
+
+useReducer
+
+useMemo
+
+useCallback
+
+React.memo
+
+Reconciliation
+
+Rendering behavior
+
+Performance optimization
+
+Custom Hooks
+
+Error handling
+
+API loading/error states
+
+Authentication patterns
+
+These should be understood practically rather than memorized.
+
+# =======================================
+
+# 73. React Quick Revision
+
+# =======================================
+
+React
+
+→ JavaScript library for UI
+
+Component
+
+→ reusable UI piece
+
+JSX
+
+→ HTML-like syntax inside JavaScript
+
+Props
+
+→ parent sends data to child
+
+children
+
+→ content placed inside a component
+
+State
+
+→ changing component data
+
+useState
+
+→ create/manage state
+
+Event
+
+→ user action
+
+onClick
+
+→ click
+
+onChange
+
+→ input change
+
+onSubmit
+
+→ form submit
+
+map()
+
+→ render lists
+
+key
+
+→ identify list items
+
+useEffect
+
+→ work with external systems after render
+
+useRef
+
+→ keep reference/value without causing re-render
+
+useContext
+
+→ share data through context
+
+useReducer
+
+→ manage complex state logic
+
+Custom Hook
+
+→ reusable hook logic
+
+Router
+
+→ navigation
+
+Outlet
+
+→ place where nested route renders
+
+API
+
+→ communication between frontend/backend
+
+fetch()
+
+→ make request
+
+Redux
+
+→ global state management
+
+useSelector
+
+→ read Redux state
+
+useDispatch
+
+→ send Redux action
+
+React.memo
+
+→ memoize component rendering
+
+useMemo
+
+→ memoize value
+
+useCallback
+
+→ memoize function
+
+# =======================================
+
+# 74. React in One Story
+
+# =======================================
+
+Remember React like this:
+
+Website
+
+```
+↓
+```
+
+Components
+
+```
+↓
+```
+
+Components need data
+
+```
+↓
+```
+
+Props
+
+```
+↓
+```
+
+Components need changing data
+
+```
+↓
+```
+
+State
+
+```
+↓
+```
+
+User does something
+
+```
+↓
+```
+
+Event
+
+```
+↓
+```
+
+State changes
+
+```
+↓
+```
+
+React updates UI
+
+```
+↓
+```
+
+Need server data?
+
+```
+↓
+```
+
+API
+
+```
+↓
+```
+
+useEffect / data-fetching solution
+
+```
+↓
+```
+
+Need multiple pages?
+
+```
+↓
+```
+
+React Router
+
+```
+↓
+```
+
+Need shared application state?
+
+```
+↓
+```
+
+Context / Redux Toolkit
+
+```
+↓
+```
+
+Need reusable logic?
+
+```
+↓
+```
+
+Custom Hooks
+
+This is the React mental model.
+
+# =======================================
+
+# 75. Final React Learning Advice
+
+# =======================================
+
+Do not try to memorize every React definition.
+
+For every topic, ask three questions:
+
+1. What problem does it solve?
+2. When do I use it?
+3. Can I write a small example myself?
+
+Example:
+
+useState
+
+Problem:
+
+→ UI needs changing data.
+
+Use when:
+
+→ component has data that changes.
+
+Practice:
+
+→ Counter.
+
+useEffect
+
+Problem:
+
+→ component needs to synchronize with something outside normal rendering.
+
+Use when:
+
+→ API request, timer, event listener, etc.
+
+Practice:
+
+→ Fetch products.
+
+Props
+
+Problem:
+
+→ child needs data from parent.
+
+Use when:
+
+→ passing product/user/data.
+
+Practice:
+
+→ ProductCard.
+
+Router
+
+Problem:
+
+→ application needs different URLs/pages.
+
+Use when:
+
+→ Home, Men, Women, Bag, Profile.
+
+Practice:
+
+→ Myntra navigation.
+
+Redux
+
+Problem:
+
+→ complex shared application state.
+
+Use when:
+
+→ many components need shared state.
+
+Practice:
+
+→ Myntra cart.
+
+# =======================================
+
+# END OF REACT NOTES
+
+# =======================================
