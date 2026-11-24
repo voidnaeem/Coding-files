@@ -1,0 +1,701 @@
+=======================================
+1. Introduction to Backend
+=======================================
+
+Backend is the part of a website that the user cannot see.
+
+Frontend shows the screen.
+Backend does the real work behind the screen.
+
+Example:
+User clicks "Add Todo" button.
+
+Frontend (React) sends the todo to the server.
+Server saves it in the database.
+Server sends back the answer.
+React shows the new todo on screen.
+
+Explanation:
+
+Frontend - only shows things, takes clicks
+Backend - logic, data saving, login, security
+
+=======================================
+2. What is a Server
+=======================================
+
+A server is a program that stays on and keeps
+waiting for requests.
+
+User sends a request.
+Server sends back a response.
+
+Example:
+
+Request:  GET /api/todo
+Response: [ { title: "Buy milk" }, { title: "Study" } ]
+
+Explanation:
+
+Request - what the user asks for
+Response - what the server gives back
+Server never sleeps, it keeps listening
+
+=======================================
+3. Node.js
+=======================================
+
+Node.js runs JavaScript outside the browser.
+
+Before Node, JavaScript only worked inside the browser.
+With Node, we write the server in JavaScript also.
+
+Example:
+
+console.log("Hello from Node");   // Hello from Node
+
+Run the file:
+
+node app.js
+
+Explanation:
+
+Browser JavaScript - frontend
+Node JavaScript - backend
+Same language on both sides
+
+=======================================
+4. npm and package.json
+=======================================
+
+npm is used to install ready-made packages.
+
+Install Express:
+
+npm install express
+
+package.json is the file that keeps the list
+of packages used in the project.
+
+node_modules is the folder where the packages
+are actually stored.
+
+Explanation:
+
+npm - installs packages
+package.json - remembers the package names
+node_modules - heavy folder, never upload it
+npm install - downloads all packages again from package.json
+
+=======================================
+5. Express
+=======================================
+
+Express is a framework for Node.
+It makes server code small and clean.
+
+Basic server:
+
+const express = require("express");
+const app = express();
+
+app.listen(5000, () => {
+    console.log("Server is running on port 5000");
+});
+
+Explanation:
+
+require("express") - brings Express into the file
+app - this is our server
+listen(5000) - server starts and waits for requests
+
+=======================================
+6. Port
+=======================================
+
+A port is like a door number of the server.
+
+http://localhost:5000
+
+localhost - my own computer
+5000 - the door where Express is running
+
+React runs on port 5173.
+Express runs on port 5000.
+
+Explanation:
+
+One computer can run many servers at the same time.
+Port tells the request where to go.
+
+=======================================
+7. app.js
+=======================================
+
+app.js is the main file of the backend.
+Everything starts from here.
+
+app.js only does these jobs:
+- create the app
+- add middleware
+- connect the routes
+- connect the database
+- start the server
+
+Example:
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+const todoRoutes = require("./routes/todoRoutes");
+app.use("/api/todo", todoRoutes);
+
+app.listen(5000);
+
+Explanation:
+
+app.js is only the starting point.
+Real work is not written here.
+Real work goes in routes, controllers and models.
+
+=======================================
+8. require and module.exports
+=======================================
+
+One file can use code from another file.
+
+module.exports sends code out of a file.
+require brings code into a file.
+
+In routes file:
+
+module.exports = router;
+
+In app.js:
+
+const todoRoutes = require("./routes/todoRoutes");
+
+Explanation:
+
+module.exports - I am giving this out
+require - I am taking this in
+Files stay separate but work together
+
+=======================================
+9. Request and Response (req, res)
+=======================================
+
+Every route gets two things:
+
+req - what the user sent
+res - what we send back
+
+Example:
+
+app.get("/api/hello", (req, res) => {
+    res.json({ message: "Hello from Express" });
+});
+
+Output in browser:
+{ "message": "Hello from Express" }
+
+Useful things:
+
+req.body - data sent by the user, like form data
+req.params - value written in the URL
+
+Example:
+
+app.get("/api/todo/:id", (req, res) => {
+    console.log(req.params.id);   // 123, if URL is /api/todo/123
+});
+
+Explanation:
+
+req - coming in
+res - going out
+res.json() - sends the answer in JSON
+
+=======================================
+10. Routes
+=======================================
+
+Routes only read the path and send the request
+to the correct controller.
+
+No real work is written in routes.
+
+File: routes/todoRoutes.js
+
+const express = require("express");
+const router = express.Router();
+const todoController = require("../controllers/todoController");
+
+router.get("/", todoController.getTodos);
+router.post("/", todoController.addTodo);
+router.delete("/:id", todoController.deleteTodo);
+
+module.exports = router;
+
+Explanation:
+
+router.get - GET request came on this path
+router.post - POST request came on this path
+After the path, the controller function is written
+Route only decides, controller does the work
+
+=======================================
+11. Controller
+=======================================
+
+Controller does the real work.
+
+It reads the request, talks to the model,
+and sends the answer back.
+
+File: controllers/todoController.js
+
+const Todo = require("../models/Todo");
+
+exports.getTodos = async (req, res) => {
+    const todos = await Todo.find();
+    res.json(todos);
+};
+
+exports.addTodo = async (req, res) => {
+    const todo = new Todo({ title: req.body.title });
+    await todo.save();
+    res.json(todo);
+};
+
+exports.deleteTodo = async (req, res) => {
+    await Todo.findByIdAndDelete(req.params.id);
+    res.json({ message: "Todo deleted" });
+};
+
+Explanation:
+
+Todo.find() - get all todos from database
+new Todo() - make a new todo
+todo.save() - save it in database
+await - wait until database work is done
+async - this function has await inside it
+
+=======================================
+12. Model and Schema
+=======================================
+
+Model tells the shape of the data.
+What fields will be saved, and their type.
+
+File: models/Todo.js
+
+const mongoose = require("mongoose");
+
+const todoSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    completed: { type: Boolean, default: false }
+});
+
+module.exports = mongoose.model("Todo", todoSchema);
+
+Explanation:
+
+Schema - the form of the data
+title - text, required means it cannot be empty
+completed - true or false, starts with false
+Model itself does not save anything
+Mongoose uses the model to talk to MongoDB
+
+=======================================
+13. MongoDB
+=======================================
+
+MongoDB is the database. Data is saved here permanently.
+
+If the server stops, normal variables are lost.
+Database data is not lost.
+
+Data is saved like JavaScript objects:
+
+{
+    title: "Buy milk",
+    completed: false
+}
+
+Explanation:
+
+Database - permanent storage
+Collection - a group of same type data, like todos
+Document - one single record, like one todo
+
+=======================================
+14. Mongoose Connection
+=======================================
+
+Mongoose connects Node with MongoDB.
+
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost:27017/tododb")
+    .then(() => {
+        console.log("MongoDB connected");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+Explanation:
+
+mongoose.connect - connects to the database
+tododb - name of the database
+then - runs when connection succeeds
+catch - runs when connection fails
+
+=======================================
+15. CRUD Operations
+=======================================
+
+Almost all backend work is 4 operations:
+
+Create - save new data
+Read - get data
+Update - change saved data
+Delete - remove data
+
+In HTTP:
+
+POST    /api/todo        - create a todo
+GET     /api/todo        - read all todos
+PUT     /api/todo/123    - update todo 123
+DELETE  /api/todo/123    - delete todo 123
+
+Code for update:
+
+exports.updateTodo = async (req, res) => {
+    const todo = await Todo.findByIdAndUpdate(
+        req.params.id,
+        { completed: true },
+        { new: true }
+    );
+    res.json(todo);
+};
+
+Explanation:
+
+Every app is mostly CRUD.
+Todo app, Airbnb, shop - same 4 operations again and again.
+
+=======================================
+16. Middleware
+=======================================
+
+Middleware is code that runs before the route.
+
+Most common example:
+
+app.use(express.json());
+
+This reads the JSON sent by the user
+and puts it in req.body.
+
+If we forget this line, req.body will be empty
+and the controller will get no data.
+
+Custom middleware example:
+
+app.use((req, res, next) => {
+    console.log(req.method, req.url);
+    next();
+});
+
+Explanation:
+
+app.use - adds a middleware
+next() - lets the request go forward
+Without next(), the request gets stuck
+
+=======================================
+17. JSON
+=======================================
+
+JSON is the format in which React and Express
+talk to each other.
+
+Example:
+
+{ "title": "Buy milk", "completed": false }
+
+Sending JSON from Express:
+
+res.json({ message: "Done" });
+
+Explanation:
+
+React sends data as JSON.
+Express sends answer as JSON.
+Keys are written in double quotes in JSON.
+
+=======================================
+18. MVC Pattern and Folders
+=======================================
+
+Big projects are divided into folders.
+This pattern is called MVC.
+
+Project structure:
+
+project
+    app.js
+    routes
+        todoRoutes.js
+    controllers
+        todoController.js
+    models
+        Todo.js
+
+MVC means:
+
+Model - shape of data
+View - what user sees (React in MERN)
+Controller - the logic
+
+Explanation:
+
+Every file has only one job.
+Finding a mistake becomes easy because
+we know which folder the problem is in.
+
+=======================================
+19. EJS and React
+=======================================
+
+Old way - EJS:
+Express makes the HTML pages itself.
+Server sends full pages to the browser.
+Frontend and backend are in one project.
+
+New way - React:
+Express only sends JSON data.
+React makes the screen.
+Frontend and backend are separate projects.
+
+Explanation:
+
+EJS - pages come from the server
+React - only data comes from the server
+MERN uses the new way
+
+=======================================
+20. Sessions and Cookies
+=======================================
+
+Session and cookie are used to remember
+the logged in user. This is the old way of login.
+
+Cookie - small file saved in the user browser
+Session - record saved on the server
+
+How it works:
+
+User logs in.
+Server creates a session.
+Browser saves a cookie.
+Every new request sends the cookie back.
+Server checks the cookie and knows the user.
+
+Explanation:
+
+Without this, the server would forget the user
+on every new page.
+
+=======================================
+21. bcrypt - Password Safety
+=======================================
+
+Passwords are never saved in plain text.
+
+bcrypt changes the password into a long
+scrambled text. This is called hashing.
+
+Real password:  naeem123
+Saved in database:  $2a$10$Xk9f... long scrambled text
+
+Code:
+
+const bcrypt = require("bcryptjs");
+
+const hash = await bcrypt.hash("naeem123", 10);
+
+Checking at login time:
+
+const match = await bcrypt.compare("naeem123", hash);
+console.log(match);   // true
+
+Explanation:
+
+hash - one way scramble, cannot be changed back
+compare - checks the password with the saved hash
+10 - salt rounds, how strong the scramble is
+
+=======================================
+22. Validation
+=======================================
+
+Data coming from the user is never trusted directly.
+It is checked first.
+
+Bad data examples:
+- empty title
+- wrong email format
+- password too short
+
+Simple check in controller:
+
+if (!req.body.title) {
+    return res.status(400).json({ message: "Title is required" });
+}
+
+express-validator is a package for bigger checking.
+
+Explanation:
+
+Validation stops wrong data before the database.
+status 400 means the user sent something wrong.
+
+=======================================
+23. Error Handling and Status Codes
+=======================================
+
+If something fails, server sends a proper error.
+It should not crash silently.
+
+try {
+    const todos = await Todo.find();
+    res.json(todos);
+} catch (err) {
+    res.status(500).json({ message: "Server error" });
+}
+
+Common status codes:
+
+200 - OK, everything fine
+201 - created, new data saved
+400 - bad request, user mistake
+404 - not found
+500 - server error, our mistake
+
+Explanation:
+
+try - run this code
+catch - if it fails, run this
+Status code tells the frontend what happened
+
+=======================================
+24. .env File
+=======================================
+
+Secret things and settings are not written in code.
+They are kept in a file called .env
+
+.env file:
+
+PORT=5000
+MONGO_URL=mongodb://localhost:27017/tododb
+
+Using it in code:
+
+const port = process.env.PORT;
+mongoose.connect(process.env.MONGO_URL);
+
+Install the package first:
+
+npm install dotenv
+
+Explanation:
+
+.env keeps passwords and keys safe
+.env file is never uploaded to GitHub
+Every project has its own .env
+
+=======================================
+25. CORS
+=======================================
+
+React runs on http://localhost:5173
+Express runs on http://localhost:5000
+
+Different ports means different addresses.
+Browser blocks React from taking data from Express.
+This block is the CORS problem.
+
+Fix - give permission from Express side:
+
+npm install cors
+
+const cors = require("cors");
+
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
+
+Now React can fetch data:
+
+fetch("http://localhost:5000/api/hello")
+    .then(res => res.json())
+    .then(data => console.log(data));
+
+Common mistakes:
+
+- cors installed but app.use(cors()) not written
+- wrong origin, port number mistake
+- cors written after the routes, it must be before routes
+
+Explanation:
+
+CORS is a browser security rule.
+cors package tells the browser this React address is allowed.
+
+=======================================
+26. Full Flow of One Request
+=======================================
+
+One complete example, step by step.
+User adds a todo from React.
+
+Step 1 - React sends the request
+POST http://localhost:5000/api/todo
+data: { title: "Buy milk" }
+
+Step 2 - app.js receives it
+express.json() reads the data.
+cors lets the request pass.
+
+Step 3 - Routes read the path
+/api/todo with POST goes to addTodo controller.
+
+Step 4 - Controller does the work
+It takes req.body.title.
+It makes a new Todo from the model.
+
+Step 5 - Model saves in MongoDB
+todo.save() saves { title: "Buy milk", completed: false }
+
+Step 6 - Answer goes back
+Controller sends res.json with the saved todo.
+
+Step 7 - React shows it
+React gets the data and the new todo appears on screen.
+
+Explanation:
+
+This same flow happens in every MERN app.
+Only names change - todo, home, product, user.
+The path is always the same:
+React, app.js, routes, controller, model, MongoDB.
+
+=======================================
+END OF BACKEND NOTES
+=======================================
